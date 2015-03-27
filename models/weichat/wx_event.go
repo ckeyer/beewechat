@@ -24,6 +24,8 @@ type SubscribeEvent struct {
 	EventKey     int32  `xml:"EventKey"`
 	Ticket       string `xml:"Ticket"`
 }
+
+// 二维码扫码事件结构体
 type ScanEvent struct {
 	ToUserName   string `xml:"ToUserName"`
 	FromUserName string `xml:"FromUserName"`
@@ -33,6 +35,8 @@ type ScanEvent struct {
 	EventKey     string `xml:"EventKey"`
 	Ticket       string `xml:"Ticket"`
 }
+
+// 地理位置推送事件结构体
 type LocationEvent struct {
 	ToUserName   string  `xml:"ToUserName"`
 	FromUserName string  `xml:"FromUserName"`
@@ -43,6 +47,8 @@ type LocationEvent struct {
 	Longitude    float64 `xml:"Longitude"`
 	Precision    int     `xml:"Precision"`
 }
+
+// 点击事件结构体
 type ClickEvent struct {
 	ToUserName   string `xml:"ToUserName"`
 	FromUserName string `xml:"FromUserName"`
