@@ -36,3 +36,16 @@ create trigger tg_update_wxuserinfo before update on tb_wx_user_info
 FOR EACH ROW
 set NEW.updated =NOW();
 
+DROP TABLE IF EXISTS tb_wx_amr ;
+CREATE TABLE tb_wx_amr(
+	id int  AUTO_INCREMENT,
+	ToUserName   varchar(32) ,
+	FromUserName varchar(32) ,
+	CreateTime   number(12) ,
+	MsgType      varchar(32) ,
+	MediaID      varchar(32) ,
+	Format       varchar(32) ,
+	Recognition  varchar(32) ,
+	MsgID        number(12) ,
+	PRIMARY KEY(id  )
+) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
