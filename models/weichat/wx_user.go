@@ -88,6 +88,8 @@ func GetUserInfo(openid string) (this *WXUserInfo) {
 	this.saveUserInfo()
 	return
 }
+
+/// 保存用户信息到数据库
 func (this *WXUserInfo) saveUserInfo() bool {
 	db, err := connectDB()
 	defer db.Close()
@@ -122,6 +124,8 @@ func (this *WXUserInfo) saveUserInfo() bool {
 	}
 	return true
 }
+
+// 链接mysql数据库
 func connectDB() (db *sql.DB, err error) {
 	connStr := beego.AppConfig.String("wx_mysql_connstr")
 	db, err = sql.Open("mysql", connStr)
@@ -131,6 +135,8 @@ func connectDB() (db *sql.DB, err error) {
 	}
 	return
 }
+
+/// 获取用户信息列表
 func GetUserListInfo() {
 	var redcli redis.Client
 	redcli.Addr = beego.AppConfig.String("redis_addr")
@@ -139,7 +145,4 @@ func GetUserListInfo() {
 	for _, v := range b {
 		GetUserInfo(fmt.Sprintf("%s", v))
 	}
-}
-func Test() {
-
 }
