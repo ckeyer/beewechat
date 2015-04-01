@@ -1,3 +1,6 @@
+/*
+ *  通过网页授权获取用户基本信息
+**/
 package weichat
 
 import (
@@ -16,6 +19,7 @@ type WebAccessToken struct {
 	Openid        string `json:"openid"`
 	Scope         string `json:"scope"`
 }
+
 type WebUserInfo struct {
 	Openid     string   `json:"openid"`     // 用户的唯一标识
 	Nickname   string   `json:"nickname"`   // 用户昵称
@@ -28,6 +32,7 @@ type WebUserInfo struct {
 	Unionid    int64    `json:"unionid"`    //
 }
 
+// 获取网页端的 AccessToken
 func GetWebAccessToken(code string) *WebAccessToken {
 	url := "https://api.weixin.qq.com/sns/oauth2/access_token?" +
 		"appid=" + beego.AppConfig.String("appid") +
@@ -50,6 +55,8 @@ func GetWebAccessToken(code string) *WebAccessToken {
 	}
 	return nil
 }
+
+// 获取用户信息
 func (this *WebAccessToken) GetUserInfo() *WebUserInfo {
 	url := "https://api.weixin.qq.com/sns/userinfo?access_token=" + this.Access_token +
 		"&openid=" + this.Openid + "&lang=zh_CN"
@@ -69,6 +76,8 @@ func (this *WebAccessToken) GetUserInfo() *WebUserInfo {
 	}
 	return nil
 }
+
+// 刷新网页端 AccessToken
 func (this *WebAccessToken) RefreshAccessToken() {
 	url := "https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=" + beego.AppConfig.String("appid") +
 		"&grant_type=refresh_token&refresh_token=" + this.Refresh_token
