@@ -24,12 +24,12 @@ CREATE TABLE tb_wx_amr(
 	id int  AUTO_INCREMENT,
 	ToUserName   varchar(32) ,
 	FromUserName varchar(32) ,
-	CreateTime   number(12) ,
+	CreateTime   int(12) ,
 	MsgType      varchar(32) ,
 	MediaID      varchar(32) ,
 	Format       varchar(32) ,
 	Recognition  varchar(32) ,
-	MsgID        number(12) ,
+	MsgID        int(12) ,
 	PRIMARY KEY(id  )
 ) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -38,7 +38,7 @@ CREATE TABLE tb_wx_scribe_event(
 	id int  AUTO_INCREMENT,
 	ToUserName   varchar(32) ,
 	FromUserName varchar(32) ,
-	CreateTime   number(12) ,
+	CreateTime   int(12) ,
 	MsgType      varchar(32) ,
 	Event        varchar(32) ,
 	PRIMARY KEY(id  )
@@ -49,11 +49,11 @@ CREATE TABLE tb_wx_text_msg(
 	id int  AUTO_INCREMENT,
 	ToUserName   varchar(32) ,
 	FromUserName varchar(32) ,
-	CreateTime   number(12) ,
+	CreateTime   int(12) ,
 	MsgType      varchar(32) ,
 	Event        varchar(32) ,
 	Content     varchar(256) ,
-	MsgId        number(12) ,
+	MsgId        int(12) ,
 	PRIMARY KEY(id  )
 ) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -62,11 +62,11 @@ CREATE TABLE tb_wx_image_msg(
 	id int  AUTO_INCREMENT,
 	ToUserName   varchar(32) ,
 	FromUserName varchar(32) ,
-	CreateTime   number(12) ,
+	CreateTime   int(12) ,
 	MsgType      varchar(32) ,
 	PicUrl      varchar(64) ,
-	MediaId      number(12) ,
-	MsgId        number(12) ,
+	MediaId      int(12) ,
+	MsgId        int(12) ,
 	PRIMARY KEY(id  )
 ) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -76,11 +76,11 @@ CREATE TABLE tb_wx_voice_msg(
 	id int  AUTO_INCREMENT,
 	ToUserName   varchar(32) ,
 	FromUserName varchar(32) ,
-	CreateTime   number(12) ,
+	CreateTime   int(12) ,
 	MsgType      varchar(32) ,
 	Format      varchar(64) ,
-	MediaId      number(12) ,
-	MsgId        number(12) ,
+	MediaId      int(12) ,
+	MsgId        int(12) ,
 	PRIMARY KEY(id  )
 ) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -89,11 +89,11 @@ CREATE TABLE tb_wx_video_msg(
 	id int  AUTO_INCREMENT,
 	ToUserName   varchar(32) ,
 	FromUserName varchar(32) ,
-	CreateTime   number(12) ,
+	CreateTime   int(12) ,
 	MsgType      varchar(32) ,
 	ThumbMediaId      varchar(64) ,
-	MediaId      number(12) ,
-	MsgId        number(12) ,
+	MediaId      int(12) ,
+	MsgId        int(12) ,
 	PRIMARY KEY(id  )
 ) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -102,13 +102,13 @@ CREATE TABLE tb_wx_location_msg(
 	id int  AUTO_INCREMENT,
 	ToUserName   varchar(32) ,
 	FromUserName varchar(32) ,
-	CreateTime   number(12) ,
+	CreateTime   int(12) ,
 	MsgType      varchar(32) ,
 	Location_X      DOUBLE ,
 	Location_Y  DOUBLE,
-	Scale	number(8),
+	Scale	int(8),
 	Label 	 varchar(32) ,
-	MsgId        number(12) ,
+	MsgId        int(12) ,
 	PRIMARY KEY(id  )
 ) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -117,12 +117,12 @@ CREATE TABLE tb_wx_link_msg(
 	id int  AUTO_INCREMENT,
 	ToUserName   varchar(32) ,
 	FromUserName varchar(32) ,
-	CreateTime   number(12) ,
+	CreateTime   int(12) ,
 	MsgType      varchar(32) ,
 	Title varchar(32) ,
 	Description varchar(256) ,
 	Url      varchar(64) ,
-	MsgId        number(12) ,
+	MsgId        int(12) ,
 	PRIMARY KEY(id  )
 ) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
