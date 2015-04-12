@@ -126,3 +126,29 @@ CREATE TABLE tb_wx_link_msg(
 	PRIMARY KEY(id  )
 ) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+
+
+insert into tb_wx_amr(ToUserName, FromUserName, CreateTime, MsgType, MediaID, Format, Recognition, MsgID)
+	values("asb","abd",1234567,"abc","asdfb","asdfb","asdf",123456);
+
+insert into tb_wx_scribe_event(ToUserName,FromUserName,CreateTime,MsgType,Event)
+	values("asb","abd",1234567,"abc","asdfb");
+
+insert into tb_wx_text_msg(ToUserName, FromUserName, CreateTime, MsgType, Event, Content, MsgId)
+	values("asb","abd",1234567,"abc","asdfb","asdfb",123456);
+
+insert into tb_wx_image_msg(ToUserName, FromUserName, CreateTime, MsgType, PicUrl, MediaId, MsgId)
+	values("asb","abd",1234567,"abc","asdfb",123456,123456);
+
+insert into tb_wx_voice_msg(ToUserName, FromUserName, CreateTime, MsgType, Format, MediaId, MsgId)
+	values("asb","abd",1234567,"abc","asdfb",123456,123456);
+
+insert into tb_wx_video_msg(ToUserName, FromUserName, CreateTime, MsgType, ThumbMediaId, MediaId, MsgId)
+	values("asb","abd",1234567,"abc","asdfb",123456,123456);
+
+insert into tb_wx_location_msg(ToUserName, FromUserName, CreateTime, MsgType, Location_X, Location_Y, Scale, Label, MsgId)
+	values("asb","abd",1234567,"abc",123456,123456,123456,"abc",123456);
+
+insert into tb_wx_link_msg(ToUserName, FromUserName, CreateTime, MsgType, Title, Description, Url, MsgId)
+	values("asb","abd",1234567,"abc","asdfb","abc","asdfb",123456);
+
