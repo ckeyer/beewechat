@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
-	"github.com/ckeyer/beeweichat/models"
+	"github.com/ckeyer/beewechat/models"
 	_ "lab204/routers"
 )
 
