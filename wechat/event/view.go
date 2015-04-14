@@ -1,3 +1,9 @@
+package event
+
+import (
+	// "github.com/astaxie/beego"
+	"encoding/xml"
+)
 
 type ViewEvent struct {
 	ToUserName   string `xml:"ToUserName"`
@@ -7,6 +13,7 @@ type ViewEvent struct {
 	Event        string `xml:"Event"`
 	EventKey     string `xml:"EventKey"`
 }
+
 func ReceiveViewEvent(content string) string {
 	var msg ViewEvent
 	err := xml.Unmarshal([]byte(content), &msg)

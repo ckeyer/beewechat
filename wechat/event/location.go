@@ -1,3 +1,9 @@
+package event
+
+import (
+	// "github.com/astaxie/beego"
+	"encoding/xml"
+)
 
 // 地理位置推送事件结构体
 type LocationEvent struct {
@@ -10,6 +16,7 @@ type LocationEvent struct {
 	Longitude    float64 `xml:"Longitude"`
 	Precision    int     `xml:"Precision"`
 }
+
 func ReceiveLocationvent(content string) string {
 	var msg LocationEvent
 	err := xml.Unmarshal([]byte(content), &msg)
