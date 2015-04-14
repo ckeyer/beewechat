@@ -1,8 +1,11 @@
 package event
 
 import (
-	// "github.com/astaxie/beego"
 	"encoding/xml"
+	"fmt"
+	"github.com/astaxie/beego"
+	"github.com/hoisie/redis"
+	"time"
 )
 
 // 二维码扫码事件结构体
