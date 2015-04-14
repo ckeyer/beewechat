@@ -1,4 +1,4 @@
-package weichat
+package wechat
 
 type WX_AMR struct {
 	ToUserName   string `xml : "ToUserName"`   //开发者微信号

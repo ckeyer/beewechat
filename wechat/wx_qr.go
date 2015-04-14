@@ -1,10 +1,9 @@
-package weichat
+package wechat
 
 import (
+	"apibaiwandun/models/global"
 	"encoding/json"
 	"github.com/astaxie/beego"
-	"github.com/ckeyer/beeweichat/models/global"
-	"github.com/ckeyer/beeweichat/models/weichat"
 	"github.com/hoisie/redis"
 	"io"
 	"log"
@@ -19,7 +18,7 @@ type Ticket struct {
 }
 
 func GetTempTicket(expire_seconds int, scene_id int, scene_str string) string {
-	url := `https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=` + wx.GetAccessToken()
+	url := `https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=` + GetAccessToken()
 	data := `{"expire_seconds": ` + strconv.Itoa(expire_seconds) +
 		`, "action_name": "QR_SCENE", ` +
 		`"action_info": {"scene": {"scene_id": ` + strconv.Itoa(scene_id) +
