@@ -1,3 +1,10 @@
+package event
+
+import (
+	// "github.com/astaxie/beego"
+	"encoding/xml"
+)
+
 type SubscribeEvent struct {
 	ToUserName   string `xml:"ToUserName"`
 	FromUserName string `xml:"FromUserName"`
@@ -7,6 +14,7 @@ type SubscribeEvent struct {
 	EventKey     int32  `xml:"EventKey"`
 	Ticket       string `xml:"Ticket"`
 }
+
 func ReceiveUnsubscribeEvent(content string) string {
 	var msg ScribeEvent
 	err := xml.Unmarshal([]byte(content), &msg)
