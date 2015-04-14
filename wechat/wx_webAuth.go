@@ -1,7 +1,7 @@
 /*
  *  通过网页授权获取用户基本信息
 **/
-package weichat
+package wechat
 
 import (
 	"encoding/json"

@@ -1,4 +1,4 @@
-package weichat
+package wechat
 
 import (
 	"database/sql"
