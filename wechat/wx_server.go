@@ -1,7 +1,7 @@
 /*
  * 与腾讯服务器的相关交互
 **/
-package weichat
+package wechat
 
 import (
 	"encoding/json"

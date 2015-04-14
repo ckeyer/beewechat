@@ -4,7 +4,7 @@
 * 作者:  ckeyer
 * 功能:  微信SDK初始化
 **/
-package weichat
+package wechat
 
 import (
 	"encoding/json"
