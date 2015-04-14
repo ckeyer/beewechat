@@ -1,12 +1,12 @@
 package wechat
 
 import (
-	"beewechat/weichat/event"
-	"encoding/xml"
-	"fmt"
-	"github.com/astaxie/beego"
-	"github.com/hoisie/redis"
-	"time"
+	// "encoding/xml"
+	// "fmt"
+	// "github.com/astaxie/beego"
+	"github.com/ckeyer/beewechat/wechat/event"
+	// "github.com/hoisie/redis"
+	// "time"
 )
 
 func ReceiveEvent(content string, msgtype *MsgType) string {
