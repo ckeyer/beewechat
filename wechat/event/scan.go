@@ -1,3 +1,10 @@
+package event
+
+import (
+	// "github.com/astaxie/beego"
+	"encoding/xml"
+)
+
 // 二维码扫码事件结构体
 type ScanEvent struct {
 	ToUserName   string `xml:"ToUserName"`
@@ -8,6 +15,7 @@ type ScanEvent struct {
 	EventKey     string `xml:"EventKey"`
 	Ticket       string `xml:"Ticket"`
 }
+
 func ReceiveScanEvent(content string) string {
 	var this ScanEvent
 	fmt.Println(content)

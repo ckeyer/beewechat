@@ -1,3 +1,10 @@
+package event
+
+import (
+	// "github.com/astaxie/beego"
+	"encoding/xml"
+)
+
 // 点击事件结构体
 type ClickEvent struct {
 	ToUserName   string `xml:"ToUserName"`
@@ -7,6 +14,7 @@ type ClickEvent struct {
 	Event        string `xml:"Event"`
 	EventKey     string `xml:"EventKey"`
 }
+
 func ReceiveClickvent(content string) string {
 	var msg ClickEvent
 	err := xml.Unmarshal([]byte(content), &msg)

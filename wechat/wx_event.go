@@ -1,7 +1,7 @@
 package wechat
 
 import (
-	"apibaiwandun/weichat/event"
+	"beewechat/weichat/event"
 	"encoding/xml"
 	"fmt"
 	"github.com/astaxie/beego"
