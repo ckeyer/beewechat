@@ -17,6 +17,7 @@ func init() {
 }
 
 type TextMsg struct {
+	Id           int64     `orm:"pri"`
 	ToUserName   string    `xml:"ToUserName"`
 	FromUserName string    `xml:"FromUserName"`
 	CreateTime   int       `xml:"CreateTime"`
