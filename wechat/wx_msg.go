@@ -3,11 +3,21 @@ package wechat
 import (
 	"apibaiwandun/weichat/msg"
 	"encoding/xml"
+	"github.com/astaxie/beego/orm"
+	_ "github.com/go-sql-driver/mysql"
 	// "fmt"
 	// "log"
 	// "strings"
 	// "time"
 )
+
+func RegDB() {
+	orm.RegisterModel(new(msg.TextMsg), new(msg.ImageMsg), new(msg.LinkMsg), new(msg.LocationMsg))
+	orm.RegisterModel(new(msg.VideoMsg), new(msg.VoiceMsg))
+	orm.RegisterDriver("mysql", orm.DR_MySQL)
+	orm.RegisterDataBase("default", "mysql", "root:root@/lab204?charset=utf8")
+
+}
 
 type MsgType struct {
 	MsgType string `xml:"MsgType"`
