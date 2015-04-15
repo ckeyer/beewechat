@@ -3,12 +3,12 @@ package main
 import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
-	"github.com/ckeyer/beewechat/models"
-	_ "lab204/routers"
+	// "github.com/ckeyer/beewechat/models"
+	"github.com/ckeyer/beewechat/wechat"
 )
 
 func init() {
-	models.RegDB()
+	wechat.RegDB()
 }
 
 func main() {
