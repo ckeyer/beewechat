@@ -6,6 +6,7 @@ import (
 )
 
 type ViewEvent struct {
+	Id           int64
 	ToUserName   string `xml:"ToUserName"`
 	FromUserName string `xml:"FromUserName"`
 	CreateTime   int    `xml:"CreateTime"`
