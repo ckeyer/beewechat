@@ -24,6 +24,7 @@ type WXUserList struct {
 	Next_openid string       `json:next_openid`
 }
 type WXUserInfo struct {
+	Id             int64  `json:"-"`
 	Subscribe      int    `json:"subscribe"`      //	用户是否订阅该公众号标识
 	Openid         string `json:"openid"`         //	用户的标识，对当前公众号唯一
 	Nickname       string `json:"nickname"`       //	用户的昵称

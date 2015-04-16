@@ -1,6 +1,7 @@
 package wechat
 
 type WX_AMR struct {
+	Id           int64
 	ToUserName   string `xml : "ToUserName"`   //开发者微信号
 	FromUserName string `xml : "FromUserName"` //发送方帐号（一个OpenID）
 	CreateTime   string `xml : "CreateTime"`   //消息创建时间 （整型）
