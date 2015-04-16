@@ -7,6 +7,7 @@ import (
 
 // 地理位置推送事件结构体
 type LocationEvent struct {
+	Id           int64
 	ToUserName   string  `xml:"ToUserName"`
 	FromUserName string  `xml:"FromUserName"`
 	CreateTime   int     `xml:"CreateTime"`
