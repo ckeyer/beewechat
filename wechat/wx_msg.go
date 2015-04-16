@@ -12,8 +12,8 @@ import (
 )
 
 func RegDB() {
-	orm.RegisterModel(new(msg.TextMsg), new(msg.ImageMsg), new(msg.LinkMsg), new(msg.LocationMsg))
-	orm.RegisterModel(new(msg.VideoMsg), new(msg.VoiceMsg))
+	orm.RegisterModel(new(msg.TextMsg), new(msg.ImageMsg), new(msg.LinkMsg), new(msg.LocationMsg), new(msg.VideoMsg), new(msg.VoiceMsg))
+	// orm.RegisterModel()
 	orm.RegisterDriver("mysql", orm.DR_MySQL)
 	orm.RegisterDataBase("default", "mysql", "root:root@/lab204?charset=utf8")
 
