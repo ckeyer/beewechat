@@ -7,6 +7,7 @@ import (
 
 // 点击事件结构体
 type ClickEvent struct {
+	Id           int64
 	ToUserName   string `xml:"ToUserName"`
 	FromUserName string `xml:"FromUserName"`
 	CreateTime   int    `xml:"CreateTime"`

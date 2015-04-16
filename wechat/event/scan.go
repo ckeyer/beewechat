@@ -10,6 +10,7 @@ import (
 
 // 二维码扫码事件结构体
 type ScanEvent struct {
+	Id           int64
 	ToUserName   string `xml:"ToUserName"`
 	FromUserName string `xml:"FromUserName"`
 	CreateTime   int    `xml:"CreateTime"`
