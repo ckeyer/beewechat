@@ -10,7 +10,6 @@ import (
 	"io"
 	"log"
 	// "errors"
-	_ "github.com/go-sql-driver/mysql"
 	"strings"
 )
 
