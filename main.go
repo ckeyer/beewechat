@@ -8,13 +8,13 @@ import (
 )
 
 func init() {
+	orm.Debug = true
+	orm.RegisterDriver("mysql", orm.DR_MySQL)
+	orm.RegisterDataBase("default", "mysql", "root:root@/lab204?charset=utf8")
 	wechat.RegDB()
+	orm.RunSyncdb("default", true, true)
 }
 
 func main() {
-	//start ORM debug
-	orm.Debug = true
-	//create table
-	orm.RunSyncdb("default", true, true)
 	beego.Run()
 }

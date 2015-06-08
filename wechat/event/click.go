@@ -1,19 +1,21 @@
 package event
 
 import (
-	// "github.com/astaxie/beego"
 	"encoding/xml"
+	"github.com/astaxie/beego/orm"
+	"time"
 )
 
 // 点击事件结构体
 type ClickEvent struct {
 	Id           int64
-	ToUserName   string `xml:"ToUserName"`
-	FromUserName string `xml:"FromUserName"`
-	CreateTime   int    `xml:"CreateTime"`
-	MsgType      string `xml:"MsgType"`
-	Event        string `xml:"Event"`
-	EventKey     string `xml:"EventKey"`
+	ToUserName   string    `xml:"ToUserName"`
+	FromUserName string    `xml:"FromUserName"`
+	CreateTime   int       `xml:"CreateTime"`
+	MsgType      string    `xml:"MsgType"`
+	Event        string    `xml:"Event"`
+	EventKey     string    `xml:"EventKey"`
+	Created      time.Time `orm:"auto_now_add;type(datetime)"`
 }
 
 func ReceiveClickvent(content string) string {
@@ -23,4 +25,14 @@ func ReceiveClickvent(content string) string {
 		return ""
 	}
 	return ""
+}
+
+func (this *ClickEvent) Insert() error {
+	o := orm.NewOrm()
+
+	id, err := o.Insert(this)
+	if err == nil {
+		this.Id = id
+	}
+	return err
 }
