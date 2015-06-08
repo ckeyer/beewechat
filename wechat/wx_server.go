@@ -8,7 +8,7 @@ import (
 	"encoding/xml"
 	"errors"
 	"fmt"
-	"funxdata/models/global"
+	"github.com/ckeyer/beewechat/models/global"
 	// "github.com/astaxie/beego"
 	"github.com/ckeyer/beewechat/wechat/event"
 	"github.com/ckeyer/beewechat/wechat/msg"
