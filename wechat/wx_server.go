@@ -5,10 +5,13 @@ package wechat
 
 import (
 	"encoding/json"
+	"encoding/xml"
 	"errors"
 	"fmt"
 	"funxdata/models/global"
 	"github.com/astaxie/beego"
+	"github.com/ckeyer/beewechat/wechat/event"
+	"github.com/ckeyer/beewechat/wechat/msg"
 	"github.com/hoisie/redis"
 	"io"
 	"log"
@@ -25,6 +28,11 @@ const (
 type AccessToken struct {
 	Access_token string `json: "access_token"`
 	Expires_in   int64  `json:"expires_in"`
+}
+
+type MsgType struct {
+	MsgType string `xml:"MsgType"`
+	Event   string `xml:"Event"`
 }
 
 func (this *AccessToken) Decode(jsonstr []byte) error {
@@ -93,4 +101,22 @@ func GetAccessToken() string {
 		log.Println(e.Error())
 	}
 	return fmt.Sprintf("%s", b)
+}
+
+func ReceiveMsg(content string) (r string) {
+	r = ""
+
+	var msgtype MsgType
+	err := xml.Unmarshal([]byte(content), &msgtype)
+	if err != nil {
+		return
+	}
+	switch msgtype.MsgType {
+	// case "text", "image", "voice", "video", "location", "link":
+	case "event":
+		r = event.ReceiveEvent(content, msgtype.Event)
+	default:
+		r = msg.ReceiveMsg(content, msgtype.Event)
+	}
+	return
 }

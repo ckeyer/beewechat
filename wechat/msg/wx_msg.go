@@ -1,9 +1,7 @@
 package msg
 
 import (
-	"encoding/xml"
 	"github.com/astaxie/beego/orm"
-	"github.com/ckeyer/beewechat/wechat/event"
 )
 
 func RegDB() {
@@ -15,20 +13,9 @@ func RegDB() {
 		new(VoiceMsg))
 }
 
-type MsgType struct {
-	MsgType string `xml:"MsgType"`
-	Event   string `xml:"Event"`
-}
-
-func ReceiveMsg(content string) (r string) {
+func ReceiveMsg(content string, msgtype string) (r string) {
 	r = ""
-
-	var msgtype MsgType
-	err := xml.Unmarshal([]byte(content), &msgtype)
-	if err != nil {
-		return
-	}
-	switch msgtype.MsgType {
+	switch msgtype {
 	case "text":
 		r = ReceiveTextMsg(content)
 	case "image":
@@ -41,8 +28,6 @@ func ReceiveMsg(content string) (r string) {
 		r = ReceiveLocationMsg(content)
 	case "link":
 		r = ReceiveLinkMsg(content)
-	case "event":
-		r = event.ReceiveEvent(content, msgtype.Event)
 	default:
 		r = "error"
 	}
