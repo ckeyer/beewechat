@@ -5,8 +5,8 @@ package wechat
 
 import (
 	"encoding/json"
-	"funxdata/models/global"
 	"github.com/astaxie/beego"
+	"github.com/ckeyer/beewechat/models/global"
 	"io"
 	"log"
 	"strings"
