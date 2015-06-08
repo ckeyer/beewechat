@@ -5,7 +5,8 @@ package wechat
 
 import (
 	"encoding/json"
-	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/orm"
+	config "github.com/ckeyer/beewechat/conf"
 	"github.com/ckeyer/beewechat/models/global"
 	"io"
 	"log"
@@ -21,6 +22,7 @@ type WebAccessToken struct {
 }
 
 type WebUserInfo struct {
+	Id         int64
 	Openid     string   `json:"openid"`     // 用户的唯一标识
 	Nickname   string   `json:"nickname"`   // 用户昵称
 	Sex        int      `json:"sex"`        // 用户的性别，值为1时是男性，值为2时是女性，值为0时是未知
@@ -28,15 +30,15 @@ type WebUserInfo struct {
 	City       string   `json:"city"`       // 普通用户个人资料填写的城市
 	Country    string   `json:"country"`    // 国家，如中国为CN
 	Headimgurl string   `json:"headimgurl"` // 用户头像，最后一个数值代表正方形头像大小
-	Privilege  []string `json:"privilege"`  // 用户特权信息，json 数组，如微信沃卡用户为（chinaunicom）
+	Privilege  []string `orm:"-"`           // 用户特权信息，json 数组，如微信沃卡用户为（chinaunicom）
 	Unionid    int64    `json:"unionid"`    //
 }
 
 // 获取网页端的 AccessToken
 func GetWebAccessToken(code string) *WebAccessToken {
 	url := "https://api.weixin.qq.com/sns/oauth2/access_token?" +
-		"appid=" + beego.AppConfig.String("appid") +
-		"&secret=" + beego.AppConfig.String("app_secret") +
+		"appid=" + config.WECHAT_APPID +
+		"&secret=" + config.WECHAT_SECRET +
 		"&code=" + code +
 		"&grant_type=authorization_code"
 	content, status := global.HttpGet(url)
@@ -77,9 +79,19 @@ func (this *WebAccessToken) GetUserInfo() *WebUserInfo {
 	return nil
 }
 
+func (this *WebUserInfo) Insert() error {
+	o := orm.NewOrm()
+
+	id, err := o.Insert(this)
+	if err == nil {
+		this.Id = id
+	}
+	return err
+}
+
 // 刷新网页端 AccessToken
 func (this *WebAccessToken) RefreshAccessToken() {
-	url := "https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=" + beego.AppConfig.String("appid") +
+	url := "https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=" + config.WECHAT_APPID +
 		"&grant_type=refresh_token&refresh_token=" + this.Refresh_token
 	content, status := global.HttpGet(url)
 	if status >= 0 {
