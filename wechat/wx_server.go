@@ -9,10 +9,9 @@ import (
 	"errors"
 	"fmt"
 	"funxdata/models/global"
-	"github.com/astaxie/beego"
+	// "github.com/astaxie/beego"
 	"github.com/ckeyer/beewechat/wechat/event"
 	"github.com/ckeyer/beewechat/wechat/msg"
-	"github.com/hoisie/redis"
 	"io"
 	"log"
 	"strconv"
@@ -39,22 +38,10 @@ func (this *AccessToken) Decode(jsonstr []byte) error {
 	return json.Unmarshal(jsonstr, &this)
 }
 
-// 获取微信的AppID
-func GetAppID() string {
-	return beego.AppConfig.String("appId")
-}
-
-// 获取微信的aApp Secret
-func GetAppSecret() string {
-	return beego.AppConfig.String("app_secret")
-}
-
 // 更新微信的AccessToken到Redis中 key=REDIS_KEY_WC_ACCESS_TOKEN
 func UpdateAccessToken() (expires_in int, err error) {
-	appid := GetAppID()
-	secret := GetAppSecret()
-	url := "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + appid +
-		"&secret=" + secret
+	url := "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + config.WECHAT_APPID +
+		"&secret=" + config.WECHAT_SECRET
 	if c, status := global.HttpGet(url); status < 0 {
 		err = errors.New("access_token 获取异常 " + strconv.Itoa(status))
 	} else {
@@ -70,8 +57,6 @@ func UpdateAccessToken() (expires_in int, err error) {
 			}
 		}
 
-		var redcli redis.Client
-		redcli.Addr = beego.AppConfig.String("redis_addr")
 		expires_in = (int)(v.Expires_in)
 		err = redcli.Setex(REDIS_KEY_WC_ACCESS_TOKEN, v.Expires_in, []byte(v.Access_token))
 		if err != nil {
@@ -94,8 +79,6 @@ func AutoGetAccessToken() {
 }
 
 func GetAccessToken() string {
-	var redcli redis.Client
-	redcli.Addr = beego.AppConfig.String("redis_addr")
 	b, e := redcli.Get(REDIS_KEY_WC_ACCESS_TOKEN)
 	if e != nil {
 		log.Println(e.Error())
