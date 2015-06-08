@@ -9,7 +9,8 @@ package jsapi
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/astaxie/beego"
+	// "github.com/astaxie/beego"
+	"github.com/ckeyer/beewechat/conf"
 	"github.com/ckeyer/beewechat/models/global"
 	"github.com/hoisie/redis"
 	logpkg "log"
@@ -20,6 +21,7 @@ import (
 var (
 	redcli redis.Client
 	log    *logpkg.Logger
+	config *conf.CkConfig
 )
 
 const (
@@ -40,7 +42,8 @@ type JsapiTicket struct {
 }
 
 func init() {
-	redcli.Addr = beego.AppConfig.String("redis_addr")
+	config = conf.NewConfig()
+	redcli.Addr = config.REDIS_ADDR
 	log = log.New(os.Stdout, "CKEYER - ", log.LstdFlags)
 }
 

@@ -4,12 +4,13 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	// "github.com/ckeyer/beewechat/models"
-	config "github.com/ckeyer/beewechat/conf"
+	"github.com/ckeyer/beewechat/conf"
 	_ "github.com/ckeyer/beewechat/routers"
 	"github.com/ckeyer/beewechat/wechat"
 )
 
 func init() {
+	config := conf.NewConfig()
 	force := false   // 强制重新建表
 	verbose := false // 打印SQL语句
 	orm.Debug = true

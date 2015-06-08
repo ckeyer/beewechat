@@ -6,7 +6,6 @@ package wechat
 import (
 	"encoding/json"
 	"github.com/astaxie/beego/orm"
-	config "github.com/ckeyer/beewechat/conf"
 	"github.com/ckeyer/beewechat/models/global"
 	"io"
 	"log"
