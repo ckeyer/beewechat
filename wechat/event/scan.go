@@ -4,6 +4,7 @@ import (
 	"encoding/xml"
 	"fmt"
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/orm"
 	"github.com/hoisie/redis"
 	"time"
 )
@@ -11,13 +12,14 @@ import (
 // 二维码扫码事件结构体
 type ScanEvent struct {
 	Id           int64
-	ToUserName   string `xml:"ToUserName"`
-	FromUserName string `xml:"FromUserName"`
-	CreateTime   int    `xml:"CreateTime"`
-	MsgType      string `xml:"MsgType"`
-	Event        string `xml:"Event"`
-	EventKey     string `xml:"EventKey"`
-	Ticket       string `xml:"Ticket"`
+	ToUserName   string    `xml:"ToUserName"`
+	FromUserName string    `xml:"FromUserName"`
+	CreateTime   int       `xml:"CreateTime"`
+	MsgType      string    `xml:"MsgType"`
+	Event        string    `xml:"Event"`
+	EventKey     string    `xml:"EventKey"`
+	Ticket       string    `xml:"Ticket"`
+	Created      time.Time `orm:"auto_now_add;type(datetime)"`
 }
 
 func ReceiveScanEvent(content string) string {
@@ -44,4 +46,14 @@ func ReceiveScanEvent(content string) string {
 <Content><![CDATA[` + data + `]]></Content>
 </xml>`
 	return rcontent
+}
+
+func (this *ScanEvent) Insert() error {
+	o := orm.NewOrm()
+
+	id, err := o.Insert(this)
+	if err == nil {
+		this.Id = id
+	}
+	return err
 }
