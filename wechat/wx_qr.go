@@ -1,9 +1,9 @@
 package wechat
 
 import (
-	"apibaiwandun/models/global"
 	"encoding/json"
 	"github.com/astaxie/beego"
+	"github.com/ckeyer/beewechat/models/global"
 	"github.com/hoisie/redis"
 	"io"
 	"log"
